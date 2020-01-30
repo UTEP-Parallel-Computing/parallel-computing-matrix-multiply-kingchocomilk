@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+'''
+    Author: Jose Eduardo Soto
+    
+'''
 import argparse
 import numpy as np
 
