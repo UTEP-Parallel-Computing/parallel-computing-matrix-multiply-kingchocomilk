@@ -66,28 +66,48 @@ def multiply(firstMatrix, secondMatrix):
     Returns the product of two martrixes
     '''
 
+    matrix = []
+    
     '''
     1.Assert that column size of the first matrix is equal to the row size of the
     second matrix.
     '''
-    print('First matrix row size:\t' + str(len(firstMatrix[0]) + '\n' +
+    firstMatrixRowSize = len(firstMatrix[0])
+    firstMatrixColumnSize = len(firstMatrix)
+    secondMatrixRowSize = len(secondMatrix[0])
+    secondMatrixColumnSize = len(secondMatrix)
+    
+    print('First matrix row size:\t' + str(firstMatrixRowSize) + '\n' +
         'Second matrix column size:\t' +
-        str(len(secondMatrix))))
-    if len(firstMatrix[0]) == len(secondMatrix):
+        str(secondMatrixColumnSize)))
+    if firstMatrixColumnSize == secondMatrixRowSize:
         
     '''
     2. Make an empty matrix the size of (row size of the first matrix, column 
     size of the second matrix).
     '''
-        matrix = np.zeros((len(firstMatrix), len(secondMatrix[0])))
-        print('Product matrix is (' + len(firstMatrix) + ',' +
-              len(secondMatrix[0]) + ')')
+        matrix = np.zeros((len(firstMatrix[0]), len(secondMatrix)), dtype=int)
+        print('Product matrix is (' + len(matrix[0]) + ',' +
+              len(matrix) + ')')
+        
     '''
     3. Fill the product matrix with values.
     '''
-        
-    
-    matrix = []
+        sj = 0
+        for row in matrix:
+            fi = 0
+            for element in row:
+                row_index = matrix.index(row)
+                col_index = matrix.index(element)
+                cell = matrix[row_index, col_index]
+                for x in range(0, firstMatrixRowSize):
+                    cell += firstMatrix[][] * secondMatrix[][]
+                    
+                fi += 1
+            sj+=1
+            
+                
+
 
     
     
