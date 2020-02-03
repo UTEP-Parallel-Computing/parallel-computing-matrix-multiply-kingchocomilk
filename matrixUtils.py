@@ -79,37 +79,31 @@ def multiply(firstMatrix, secondMatrix):
     
     print('First matrix row size:\t' + str(firstMatrixRowSize) + '\n' +
         'Second matrix column size:\t' +
-        str(secondMatrixColumnSize)))
+        str(secondMatrixColumnSize))
     if firstMatrixColumnSize == secondMatrixRowSize:
         
-    '''
-    2. Make an empty matrix the size of (row size of the first matrix, column 
-    size of the second matrix).
-    '''
+        '''
+        2. Make an empty matrix the size of (row size of the first matrix, column 
+        size of the second matrix).
+        '''
         matrix = np.zeros((len(firstMatrix[0]), len(secondMatrix)), dtype=int)
-        print('Product matrix is (' + len(matrix[0]) + ',' +
-              len(matrix) + ')')
+        matrix = matrix.tolist()
+        print('Product matrix is (' + str(len(matrix[0])) + ',' +
+              str(len(matrix)) + ')')
         
-    '''
-    3. Fill the product matrix with values.
-    '''
+        '''
+        3. Fill the product matrix with values.
+        '''
+
         sj = 0
-        for row in matrix:
+        for row_index in range(0, len(matrix)):
             fi = 0
-            for element in row:
-                row_index = matrix.index(row)
-                col_index = matrix.index(element)
-                cell = matrix[row_index, col_index]
+            for col_index in range(0, len(matrix[0])):
                 for x in range(0, firstMatrixRowSize):
-                    cell += firstMatrix[][] * secondMatrix[][]
+                    matrix[row_index][col_index] += firstMatrix[fi][x] * secondMatrix[x][sj]
                     
                 fi += 1
             sj+=1
-            
-                
-
-
-    
     
     return matrix
 
