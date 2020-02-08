@@ -6,6 +6,7 @@
 '''
 import argparse
 import numpy as np
+import pymp
 
 def genMatrix(size=1024, value=1):
     """
@@ -86,7 +87,8 @@ def multiply(firstMatrix, secondMatrix):
         2. Make an empty matrix the size of (row size of the first matrix, column 
         size of the second matrix).
         '''
-        matrix = np.zeros((len(firstMatrix[0]), len(secondMatrix)), dtype=int)
+        #matrix = np.zeros((len(firstMatrix[0]), len(secondMatrix)), dtype=int)
+        matrix = pymp.shared.array((firstMatrixRowSize, secondMatrixColumnSize), dtype=int)
         matrix = matrix.tolist()
         print('Product matrix is (' + str(len(matrix[0])) + ',' +
               str(len(matrix)) + ')')
@@ -99,10 +101,10 @@ def multiply(firstMatrix, secondMatrix):
         for row_index in range(0, len(matrix)):
             fi = 0
             for col_index in range(0, len(matrix[0])):
-                for x in range(0, firstMatrixRowSize):
-                    matrix[row_index][col_index] += firstMatrix[fi][x] * secondMatrix[x][sj]
-                    
-                fi += 1
+                with pymp.Parallel(4) as p:
+                    for x in p.range(0, firstMatrixRowSize):
+                        matrix[row_index][col_index] += firstMatrix[fi][x] * secondMatrix[x][sj]
+                    fi += 1
             sj+=1
     
     return matrix
