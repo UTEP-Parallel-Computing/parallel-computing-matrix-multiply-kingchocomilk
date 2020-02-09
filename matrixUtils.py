@@ -88,24 +88,24 @@ def multiply(firstMatrix, secondMatrix):
         size of the second matrix).
         '''
         #matrix = np.zeros((len(firstMatrix[0]), len(secondMatrix)), dtype=int)
-        matrix = pymp.shared.array((firstMatrixRowSize, secondMatrixColumnSize), dtype=int)
-        matrix = matrix.tolist()
-        print('Product matrix is (' + str(len(matrix[0])) + ',' +
-              str(len(matrix)) + ')')
+        with pymp.Parallel(4) as p:
+            matrix = pymp.shared.array((firstMatrixRowSize, secondMatrixColumnSize), dtype=int)
+            matrix = matrix.tolist()
+            print('Product matrix is (' + str(len(matrix[0])) + ',' +
+                  str(len(matrix)) + ')')
         
-        '''
-        3. Fill the product matrix with values.
-        '''
+            '''
+            3. Fill the product matrix with values.
+            '''
 
-        sj = 0
-        for row_index in range(0, len(matrix)):
-            fi = 0
-            for col_index in range(0, len(matrix[0])):
-                with pymp.Parallel(4) as p:
+            sj = 0
+            for row_index in range(0, len(matrix)):
+                fi = 0
+                for col_index in range(0, len(matrix[0])):
                     for x in p.range(0, firstMatrixRowSize):
                         matrix[row_index][col_index] += firstMatrix[fi][x] * secondMatrix[x][sj]
                     fi += 1
-            sj+=1
+                sj+=1
     
     return matrix
 
