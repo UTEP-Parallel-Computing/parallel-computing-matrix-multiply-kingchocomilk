@@ -99,10 +99,12 @@ def multiply(firstMatrix, secondMatrix):
             '''
 
             sj = 0
-            for row_index in range(0, len(matrix)):
+            for row_index in p.range(0, len(matrix)):
                 fi = 0
                 for col_index in range(0, len(matrix[0])):
-                    for x in p.range(0, firstMatrixRowSize):
+                    for x in range(0, firstMatrixRowSize):
+                        # This might not be the best solution. The read/write part can cause
+                        # problems.
                         matrix[row_index][col_index] += firstMatrix[fi][x] * secondMatrix[x][sj]
                     fi += 1
                 sj+=1
